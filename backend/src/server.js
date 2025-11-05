@@ -186,6 +186,29 @@ app.get("/api/classes", async (req, res) => {
   }
 });
 
+// Rota para criar turmas
+app.post("/api/classes", async (req, res) => {
+  try {
+    const { name, course_id, year, semester, max_students } = req.body;
+
+    const [result] = await connection.execute(
+      `INSERT INTO classes (name, course_id, year, semester, max_students) 
+       VALUES (?, ?, ?, ?, ?)`,
+      [name, course_id, year, semester, max_students]
+    );
+
+    res.json({
+      id: result.insertId,
+      message: "Turma cadastrada com sucesso",
+    });
+  } catch (error) {
+    console.error("Erro ao cadastrar turma:", error);
+    res
+      .status(500)
+      .json({ error: "Erro interno do servidor: " + error.message });
+  }
+});
+
 // Rota de saúde da API
 app.get("/api/health", async (req, res) => {
   try {

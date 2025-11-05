@@ -1,0 +1,13 @@
+# Arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Logs de IDEs
+*.log
+
+# Configurações de IDE
+.vscode/
+.idea/
+
+# Dependências (já cobertos pelos específicos, mas como backup)
+node_modules/
